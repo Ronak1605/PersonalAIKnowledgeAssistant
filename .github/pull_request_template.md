@@ -6,9 +6,11 @@ Example: Closes #12
 
 ## Type of Change
 - [ ] Feature
-- [ ] Architecture
+- [ ] Chore
 - [ ] Bug fix
+- [ ] Testing update
 - [ ] Documentation
+- [ ] Refactor
 
 ## Checklist
 - [ ] Code builds
