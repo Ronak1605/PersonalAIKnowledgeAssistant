@@ -12,10 +12,10 @@ Thank you for your interest in contributing! Please follow the guidelines below 
 - `chore/*`: Tooling or maintenance
 
 ## Commit Message Guidelines
-This project follows the **Conventional Commits** specification.
+This project follows the commit specifications defined below.
 
 ### Commit Format
-<type>: <short description>
+- <type>: <short description>
 
 ### Allowed Types
 - `feat`: New feature
@@ -26,10 +26,10 @@ This project follows the **Conventional Commits** specification.
 - `chore`: Tooling or maintenance
 
 ### Examples
-feat: add PDF document loader
-fix: handle empty input files
-docs: add architecture overview
-refactor: extract embedding service
+- feat: add PDF document loader
+- fix: handle empty input files
+- docs: add architecture overview
+- refactor: extract embedding service
 
 ## Pull Requests
 - All changes must go through a Pull Request
