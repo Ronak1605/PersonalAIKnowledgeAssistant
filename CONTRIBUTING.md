@@ -15,7 +15,7 @@ Thank you for your interest in contributing! Please follow the guidelines below 
 This project follows the commit specifications defined below.
 
 ### Commit Format
-- <type>: <short description>
+`<type>: <short description>`
 
 ### Allowed Types
 - `feat`: New feature
