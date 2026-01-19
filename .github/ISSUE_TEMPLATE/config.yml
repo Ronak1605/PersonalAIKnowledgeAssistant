@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+
+contact_links:
+  - name: Documentation
+    url: https://github.com/Ronak1605/personal_ai_knowledge_assistant
+    about: Read the documentation before opening an issue
