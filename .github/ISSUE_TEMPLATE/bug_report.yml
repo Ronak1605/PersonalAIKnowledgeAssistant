@@ -1,0 +1,46 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce the issue?
+      placeholder: |
+        1. Run command...
+        2. Upload file...
+        3. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: OS, Python version, browser, etc.
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have searched for existing issues
+          required: true
