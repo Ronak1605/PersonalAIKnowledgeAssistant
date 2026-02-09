@@ -1,0 +1,1 @@
+# Runtime dependencies for the Personal AI Knowledge Assistant project
