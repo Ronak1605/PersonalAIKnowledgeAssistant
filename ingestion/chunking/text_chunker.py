@@ -49,7 +49,7 @@ class TextChunker:
                 metadata={
                     **input_obj.metadata,
                     "chunk_start": str(start),
-                    "chunk_end": str(end),
+                    "chunk_end": str(min(end, len(text))),
                 },
             )
 
