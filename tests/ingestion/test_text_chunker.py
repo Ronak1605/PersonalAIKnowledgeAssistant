@@ -59,38 +59,10 @@ def test_correct_chunk_content(base_input):
     chunks = chunker.chunk(base_input)
 
     assert [c.content for c in chunks] == ["abcde", "fghij"]
-
-
-def test_input_id_is_propagated(base_input):
-    chunker = TextChunker(chunk_size=5, overlap=0)
-
-    chunks = chunker.chunk(base_input)
-
-    assert all(chunk.input_id == "input-123" for chunk in chunks)
     
-# Metadata tests
-
-def test_metadata_is_propagated(base_input):
-    chunker = TextChunker(chunk_size=5, overlap=0)
-
-    chunks = chunker.chunk(base_input)
-
-    for chunk in chunks:
-        assert chunk.metadata["source"] == "unit-test"
-
-
-def test_chunk_position_metadata(base_input):
-    chunker = TextChunker(chunk_size=5, overlap=0)
-
-    chunks = chunker.chunk(base_input)
-
-    assert chunks[0].metadata["chunk_start"] == "0"
-    assert chunks[0].metadata["chunk_end"] == "5"
-
-    assert chunks[1].metadata["chunk_start"] == "5"
-    assert chunks[1].metadata["chunk_end"] == "10"
-
-# Overlap behaviour
+# ------------------------
+# Overlap behavior tests
+# ------------------------
 
 def test_overlap_behavior():
     chunker = TextChunker(chunk_size=5, overlap=2)
@@ -113,8 +85,18 @@ def test_overlap_behavior():
         "j"
     ]
 
-# UUID & Timestamp integrity
 
+# ------------------------
+# ID and Timestamp tests
+# ------------------------
+
+def test_input_id_is_propagated(base_input):
+    chunker = TextChunker(chunk_size=5, overlap=0)
+
+    chunks = chunker.chunk(base_input)
+
+    assert all(chunk.input_id == "input-123" for chunk in chunks)
+    
 def test_chunk_ids_are_valid_uuid(base_input):
     chunker = TextChunker(chunk_size=5, overlap=0)
 
@@ -130,7 +112,40 @@ def test_created_at_is_set(base_input):
     chunks = chunker.chunk(base_input)
 
     assert all(chunk.created_at is not None for chunk in chunks)
+    
+# ------------------------
+# Metadata tests
+# ------------------------
 
+def test_metadata_is_propagated(base_input):
+    chunker = TextChunker(chunk_size=5, overlap=0)
+
+    chunks = chunker.chunk(base_input)
+
+    for chunk in chunks:
+        assert chunk.metadata["source"] == "unit-test"
+
+
+def test_chunk_position_metadata(base_input):
+    chunker = TextChunker(chunk_size=5, overlap=0)
+
+    chunks = chunker.chunk(base_input)
+
+    assert chunks[0].metadata["chunk_start"] == "0"
+    assert chunks[0].metadata["chunk_end"] == "5"
+
+    assert chunks[1].metadata["chunk_start"] == "5"
+    assert chunks[1].metadata["chunk_end"] == "10"
+    
+
+def test_original_metadata_not_mutated(base_input):
+    chunker = TextChunker(chunk_size=5, overlap=0)
+
+    original_metadata = base_input.metadata.copy()
+
+    chunker.chunk(base_input)
+
+    assert base_input.metadata == original_metadata
 
 # ------------------------
 # Edge and special cases
@@ -150,12 +165,3 @@ def test_empty_content_returns_empty_list():
     chunks = chunker.chunk(input_obj)
 
     assert chunks == []
-
-def test_original_metadata_not_mutated(base_input):
-    chunker = TextChunker(chunk_size=5, overlap=0)
-
-    original_metadata = base_input.metadata.copy()
-
-    chunker.chunk(base_input)
-
-    assert base_input.metadata == original_metadata
