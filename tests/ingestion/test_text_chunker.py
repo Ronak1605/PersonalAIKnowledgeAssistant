@@ -133,7 +133,7 @@ def test_created_at_is_set(base_input):
 
 
 # ------------------------
-# Edge cases
+# Edge and special cases
 # ------------------------
 
 def test_empty_content_returns_empty_list():
@@ -150,3 +150,12 @@ def test_empty_content_returns_empty_list():
     chunks = chunker.chunk(input_obj)
 
     assert chunks == []
+
+def test_original_metadata_not_mutated(base_input):
+    chunker = TextChunker(chunk_size=5, overlap=0)
+
+    original_metadata = base_input.metadata.copy()
+
+    chunker.chunk(base_input)
+
+    assert base_input.metadata == original_metadata
