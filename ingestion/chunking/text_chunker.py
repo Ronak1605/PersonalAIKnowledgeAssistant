@@ -48,7 +48,7 @@ class TextChunker:
         chunks = []
         start = 0
 
-        while start < len(text):
+        while start < len(text): # Allows partial chunks at the end of the text, following most RAG implementations
             end = start + self.chunk_size
             chunk_text = text[start:end]
 
