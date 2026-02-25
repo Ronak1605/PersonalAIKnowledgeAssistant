@@ -1,3 +1,4 @@
 # Development and test dependencies for the Personal AI Knowledge Assistant project
 pytest
 pypdf
+reportlab
