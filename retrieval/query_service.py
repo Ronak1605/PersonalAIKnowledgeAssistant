@@ -15,10 +15,8 @@ class QueryService:
         self.vector_store = vector_store
 
     def query(self, text: str, top_k: int = 3) -> List[Tuple[Chunk, float]]:
-        # Embed query
+        
         query_vector = self.embedder.embed([text])[0]
-
-        # Search vector store
         results = self.vector_store.search(query_vector, top_k)
-
+        
         return results
