@@ -11,9 +11,20 @@ class RAGService:
         self.generator = generator
 
     def ask(self, query: str, top_k: int = 3) -> str:
+        print("\n[DEBUG] Starting retrieval")
+        
         # Retrieve relevant chunks
         results = self.query_service.query(query, top_k)
+        print(f"[DEBUG] Retrieved {len(results)} results")
 
+
+        for i, (chunk, score) in enumerate(results, start=1):
+            print(
+                f"[DEBUG] Result {i}: "
+                f"score={score:.4f}, "
+                f"length={len(chunk.content)}"
+            )
+            
         chunks: List[Chunk] = [chunk for chunk, _ in results]
 
         # Generate response

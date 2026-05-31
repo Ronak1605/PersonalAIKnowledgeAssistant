@@ -1,0 +1,105 @@
+Personal AI Knowledge Assistant Project Notes
+
+Project Overview
+This project is a personal AI assistant designed to ingest, organize, and retrieve knowledge from multiple personal data sources such as text files, PDFs, emails, and notes.
+
+Core Goals
+- Build a modular Retrieval-Augmented Generation (RAG) system
+- Support multiple ingestion formats
+- Implement vector search over personal knowledge
+- Integrate local LLMs for privacy-focused AI interactions
+- Maintain clean architecture and strong test coverage
+
+Architecture Decisions
+The system is divided into several independent layers:
+
+1. Ingestion Layer
+Responsible for loading and normalizing data from different sources.
+
+Supported sources:
+- Plain text files
+- PDFs
+- Emails
+
+2. Chunking Layer
+Splits large documents into smaller overlapping chunks for embedding and retrieval.
+
+Current chunking strategy:
+- Fixed-size chunking
+- Configurable overlap
+
+3. Embedding Layer
+Converts chunks into vector embeddings.
+
+Current implementation:
+- Simple deterministic embedder for testing
+
+Planned improvements:
+- sentence-transformers integration
+- Better semantic embeddings
+
+4. Vector Store
+Stores embeddings and performs similarity search.
+
+Current implementation:
+- In-memory vector store
+- Cosine similarity search
+
+Planned improvements:
+- FAISS integration
+- Persistent storage
+- Metadata filtering
+
+5. Retrieval Layer
+Embeds user queries and retrieves relevant chunks from the vector store.
+
+6. Generation Layer
+Uses a language model to generate answers using retrieved context.
+
+Current implementation:
+- SimpleGenerator for tests
+- OllamaGenerator for local LLM inference
+
+Planned Features
+- Conversational memory
+- Source attribution
+- Chat interface
+- Chrome extension
+- Local-first privacy model
+- Multi-user support
+- Web dashboard
+
+Important Technologies
+- Python
+- Pytest
+- Ollama
+- sentence-transformers
+- Vector databases
+- RAG architecture
+
+Development Philosophy
+The project prioritizes:
+- Clean architecture
+- Modularity
+- Testability
+- Local AI support
+- Privacy-first design
+- Professional engineering practices
+
+Example Questions
+- What is the purpose of this project?
+- Which input sources are supported?
+- What are the planned improvements for embeddings?
+- What technologies are used?
+- What are the long-term goals of the assistant?
+
+Notes About Privacy
+The assistant is designed with privacy in mind. Long-term goals include:
+- Fully local execution
+- No mandatory cloud APIs
+- Local vector storage
+- User-controlled data ingestion
+- Secure handling of personal knowledge
+
+Future Vision
+The long-term goal is to create a personal AI system that acts like a searchable second brain, capable of synthesizing information across emails, notes, documents, and learning materials while maintaining strong privacy guarantees.
